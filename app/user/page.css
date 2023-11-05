@@ -1,0 +1,41 @@
+.user-input-form {
+    max-width: 800px;
+    margin: 0 auto;
+    border-radius: 8px;
+    background-color: #ffffff; /* Set background color to white */
+    text-align: center;
+  }
+
+  .user-input-form label {
+    font-weight: bold;
+    padding: 8px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    margin-left: 8px;
+    display: block;
+    /* Add this line to set the label text color to grey */
+    color: #555;
+    text-align: left;
+  }
+
+  .user-input-form input {
+    color: #555;
+    width: 100%;
+    padding: 6px;
+    margin-bottom: 8px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    text-align: left;
+  }
+  
+  .user-input-form button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+  
