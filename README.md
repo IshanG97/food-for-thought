@@ -43,5 +43,3 @@ We built Food for Thought using:
 
 **Summary**
 We think our idea has potential for real-world value and impact, in an age of increasing user requests about food allergen information, and enhanced need for personalised diet and food recommendations. The conversational booking agents dramatically simplify the reservation process for people with dietary limitations and also ease the burden for restaurant staff that have to continually deal with repetitive user queries. With a focus on increasing accessibility for food and health information, we successfully built components that allow users to easily search, discover, and book restaurants on-the-go. With in-built conversational booking agents to take individual preferences into account, food-for-thought dramatically simplifies the reservation process for people with dietary limitations. 
-
-

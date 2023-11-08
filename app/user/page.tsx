@@ -41,7 +41,7 @@ export default function UserInput() {
   
       if (response.ok) {
         console.log('Form data sent successfully');
-        router.push('/maps'); // Navigate to the maps page
+        router.push('/map'); // Navigate to the maps page
       } else {
         console.error('Error sending form data');
       }

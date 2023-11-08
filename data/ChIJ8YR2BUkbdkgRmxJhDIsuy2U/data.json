@@ -1,0 +1,297 @@
+{
+    "address_components": [
+        {
+            "long_name": "57",
+            "short_name": "57",
+            "types": [
+                "street_number"
+            ]
+        },
+        {
+            "long_name": "Grays Inn Road",
+            "short_name": "Grays Inn Rd",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "London",
+            "short_name": "London",
+            "types": [
+                "postal_town"
+            ]
+        },
+        {
+            "long_name": "Greater London",
+            "short_name": "Greater London",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "England",
+            "short_name": "England",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "United Kingdom",
+            "short_name": "GB",
+            "types": [
+                "country",
+                "political"
+            ]
+        },
+        {
+            "long_name": "WC1X 8PP",
+            "short_name": "WC1X 8PP",
+            "types": [
+                "postal_code"
+            ]
+        }
+    ],
+    "adr_address": "<span class=\"street-address\">57 Grays Inn Road</span>, <span class=\"locality\">London</span> <span class=\"postal-code\">WC1X 8PP</span>, <span class=\"country-name\">UK</span>",
+    "business_status": "OPERATIONAL",
+    "current_opening_hours": {
+        "open_now": false,
+        "periods": [
+            {
+                "close": {
+                    "date": "2023-11-12",
+                    "day": 0,
+                    "time": "2200"
+                },
+                "open": {
+                    "date": "2023-11-12",
+                    "day": 0,
+                    "time": "1200"
+                }
+            },
+            {
+                "close": {
+                    "date": "2023-11-13",
+                    "day": 1,
+                    "time": "2300"
+                },
+                "open": {
+                    "date": "2023-11-13",
+                    "day": 1,
+                    "time": "1200"
+                }
+            },
+            {
+                "close": {
+                    "date": "2023-11-14",
+                    "day": 2,
+                    "time": "2300"
+                },
+                "open": {
+                    "date": "2023-11-14",
+                    "day": 2,
+                    "time": "1200"
+                }
+            },
+            {
+                "close": {
+                    "date": "2023-11-08",
+                    "day": 3,
+                    "time": "2300"
+                },
+                "open": {
+                    "date": "2023-11-08",
+                    "day": 3,
+                    "time": "1200"
+                }
+            },
+            {
+                "close": {
+                    "date": "2023-11-09",
+                    "day": 4,
+                    "time": "2300"
+                },
+                "open": {
+                    "date": "2023-11-09",
+                    "day": 4,
+                    "time": "1200"
+                }
+            },
+            {
+                "close": {
+                    "date": "2023-11-10",
+                    "day": 5,
+                    "time": "2300"
+                },
+                "open": {
+                    "date": "2023-11-10",
+                    "day": 5,
+                    "time": "1200"
+                }
+            },
+            {
+                "close": {
+                    "date": "2023-11-11",
+                    "day": 6,
+                    "time": "2300"
+                },
+                "open": {
+                    "date": "2023-11-11",
+                    "day": 6,
+                    "time": "1200"
+                }
+            }
+        ],
+        "weekday_text": [
+            "Monday: 12:00\u2009\u2013\u200911:00\u202fPM",
+            "Tuesday: 12:00\u2009\u2013\u200911:00\u202fPM",
+            "Wednesday: 12:00\u2009\u2013\u200911:00\u202fPM",
+            "Thursday: 12:00\u2009\u2013\u200911:00\u202fPM",
+            "Friday: 12:00\u2009\u2013\u200911:00\u202fPM",
+            "Saturday: 12:00\u2009\u2013\u200911:00\u202fPM",
+            "Sunday: 12:00\u2009\u2013\u200910:00\u202fPM"
+        ]
+    },
+    "delivery": true,
+    "dine_in": true,
+    "editorial_summary": {
+        "language": "en",
+        "overview": "Pizza, pasta and Italian meat and fish dishes in a rustic-style restaurant with wood furnishing."
+    },
+    "formatted_address": "57 Grays Inn Rd, London WC1X 8PP, UK",
+    "formatted_phone_number": "020 7209 9380",
+    "geometry": {
+        "location": {
+            "lat": 51.5222255,
+            "lng": -0.1140018
+        },
+        "viewport": {
+            "northeast": {
+                "lat": 51.52362198029149,
+                "lng": -0.112652569708498
+            },
+            "southwest": {
+                "lat": 51.5209240197085,
+                "lng": -0.115350530291502
+            }
+        }
+    },
+    "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
+    "icon_background_color": "#FF9E67",
+    "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet",
+    "international_phone_number": "+44 20 7209 9380",
+    "name": "Faros Holborn",
+    "opening_hours": {
+        "open_now": false,
+        "periods": [
+            {
+                "close": {
+                    "day": 0,
+                    "time": "2200"
+                },
+                "open": {
+                    "day": 0,
+                    "time": "1200"
+                }
+            },
+            {
+                "close": {
+                    "day": 1,
+                    "time": "2300"
+                },
+                "open": {
+                    "day": 1,
+                    "time": "1200"
+                }
+            },
+            {
+                "close": {
+                    "day": 2,
+                    "time": "2300"
+                },
+                "open": {
+                    "day": 2,
+                    "time": "1200"
+                }
+            },
+            {
+                "close": {
+                    "day": 3,
+                    "time": "2300"
+                },
+                "open": {
+                    "day": 3,
+                    "time": "1200"
+                }
+            },
+            {
+                "close": {
+                    "day": 4,
+                    "time": "2300"
+                },
+                "open": {
+                    "day": 4,
+                    "time": "1200"
+                }
+            },
+            {
+                "close": {
+                    "day": 5,
+                    "time": "2300"
+                },
+                "open": {
+                    "day": 5,
+                    "time": "1200"
+                }
+            },
+            {
+                "close": {
+                    "day": 6,
+                    "time": "2300"
+                },
+                "open": {
+                    "day": 6,
+                    "time": "1200"
+                }
+            }
+        ],
+        "weekday_text": [
+            "Monday: 12:00\u2009\u2013\u200911:00\u202fPM",
+            "Tuesday: 12:00\u2009\u2013\u200911:00\u202fPM",
+            "Wednesday: 12:00\u2009\u2013\u200911:00\u202fPM",
+            "Thursday: 12:00\u2009\u2013\u200911:00\u202fPM",
+            "Friday: 12:00\u2009\u2013\u200911:00\u202fPM",
+            "Saturday: 12:00\u2009\u2013\u200911:00\u202fPM",
+            "Sunday: 12:00\u2009\u2013\u200910:00\u202fPM"
+        ]
+    },
+    "place_id": "ChIJ8YR2BUkbdkgRmxJhDIsuy2U",
+    "plus_code": {
+        "compound_code": "GVCP+V9 London, UK",
+        "global_code": "9C3XGVCP+V9"
+    },
+    "price_level": 2,
+    "rating": 4.6,
+    "reference": "ChIJ8YR2BUkbdkgRmxJhDIsuy2U",
+    "reservable": true,
+    "serves_beer": true,
+    "serves_breakfast": false,
+    "serves_brunch": true,
+    "serves_dinner": true,
+    "serves_lunch": true,
+    "serves_vegetarian_food": true,
+    "serves_wine": true,
+    "takeout": true,
+    "types": [
+        "restaurant",
+        "point_of_interest",
+        "food",
+        "establishment"
+    ],
+    "url": "https://maps.google.com/?cid=7335007592846004891",
+    "user_ratings_total": 868,
+    "utc_offset": 0,
+    "vicinity": "57 Grays Inn Road, London",
+    "website": "http://www.farosrestaurant.co.uk/"
+}

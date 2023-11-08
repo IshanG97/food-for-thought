@@ -1,12 +1,11 @@
-'use client'
+import Image from "next/image";
+import Link from "next/link";
 
 import React, { useState } from 'react';
 import MapComponent from './MapComponent';
 import ChatComponent from './ChatComponent';
 
-const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_FRONTEND_KEY;
-
-const MapChatPage = () => {
+export default function Maps() {
   const mapStyle = {
     width: '100%',
     height: '100vh',
@@ -24,13 +23,11 @@ const MapChatPage = () => {
   return (
     <div>
       <div style={mapStyle}>
-        <MapComponent apiKey={apiKey} />
+        <MapComponent />
       </div>
       <div style={chatStyle}>
         <ChatComponent />
       </div>
     </div>
   );
-};
-
-export default MapChatPage;
+}

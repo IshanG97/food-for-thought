@@ -22,16 +22,7 @@ from pydantic import BaseModel
 from twilio.rest import Client
 from twilio.twiml.voice_response import Gather, Say, Start, Stop, VoiceResponse
 
-from constants import (
-    ANTHROPIC_API_KEY,
-    GCP_API_KEY,
-    OPENAI_API_KEY,
-    NGROK_DOMAIN,
-    TWILIO_ACCOUNT_SID,
-    TWILIO_AUTH_TOKEN,
-    TWILIO_PHONE_NUMBER,
-    PLACE_DETAILS_URL,
-)
+import constants
 from prompts import SYSTEM_MESSAGE, format_snippets, get_booking, get_speech
 from voice import transcribe_audio
 
@@ -40,13 +31,13 @@ NUM_SNIPPETS = 3
 VOICE = "Google.en-GB-Wavenet-B"
 
 app = FastAPI()
-anthropic = Anthropic(api_key=ANTHROPIC_API_KEY)
-twilio = Client(username=TWILIO_ACCOUNT_SID, password=TWILIO_AUTH_TOKEN)
+anthropic = Anthropic(api_key=constants.ANTHROPIC_API_KEY)
+twilio = Client(username=constants.TWILIO_ACCOUNT_SID, password=constants.TWILIO_AUTH_TOKEN)
 
 calls = {}
 model = ChatAnthropic(
     model="claude-instant-1",
-    anthropic_api_key=ANTHROPIC_API_KEY,
+    anthropic_api_key=constants.ANTHROPIC_API_KEY,
 )
 restaurants = {}
 
@@ -55,7 +46,7 @@ def hms():
     return datetime.now().strftime("%H:%M:%S.%f")[:-3]
 
 
-@app.post("/call")
+@app.post("api/call")
 async def call(CallSid: str = Form(), From: str = Form()):
     print(f"[{hms()}] Incoming call from {From}")
 
@@ -79,18 +70,18 @@ async def call(CallSid: str = Form(), From: str = Form()):
     say.prosody(greeting, rate="135%")
     response.append(say)
 
-    response.redirect(f"https://{NGROK_DOMAIN}/record", method="POST")
+    response.redirect(f"https://{constants.NGROK_DOMAIN}/record", method="POST")
     return Response(content=str(response), media_type="application/xml")
 
 
-@app.post("/record")
+@app.post("api/record")
 async def record(CallSid: str = Form()):
     print(f"[{hms()}] Recording")
     response = VoiceResponse()
     calls[CallSid]["transcripts"].append("")
 
     start = Start()
-    start.stream(url=f"wss://{NGROK_DOMAIN}/transcribe", name=CallSid)
+    start.stream(url=f"wss://{constants.NGROK_DOMAIN}/transcribe", name=CallSid)
     response.append(start)
     gather = Gather(
         action="/stop",
@@ -104,18 +95,18 @@ async def record(CallSid: str = Form()):
     return Response(content=str(response), media_type="application/xml")
 
 
-@app.post("/stop")
+@app.post("api/stop")
 async def stop(CallSid: str = Form()):
     print(f"[{hms()}] Stopping recording")
     response = VoiceResponse()
     stop = Stop()
     stop.stream(name=CallSid)
     response.append(stop)
-    response.redirect(f"https://{NGROK_DOMAIN}/respond", method="POST")
+    response.redirect(f"https://{constants.NGROK_DOMAIN}/respond", method="POST")
     return Response(content=str(response), media_type="application/xml")
 
 
-@app.post("/respond")
+@app.post("api/respond")
 async def respond(CallSid: str = Form()):
     transcript = calls[CallSid]["transcripts"][-1]
 
@@ -159,11 +150,11 @@ async def respond(CallSid: str = Form()):
         print(f"[{hms()}] Hanging up")
         response.hangup()
 
-    response.redirect(f"https://{NGROK_DOMAIN}/record", method="POST")
+    response.redirect(f"https://{constants.NGROK_DOMAIN}/record", method="POST")
     return Response(content=str(response), media_type="application/xml")
 
 
-@app.websocket("/transcribe")
+@app.websocket("api/transcribe")
 async def transcribe(websocket: WebSocket) -> None:
     """Fast, accurate multilingual audio transcription over websockets."""
     await websocket.accept()
@@ -198,7 +189,7 @@ at {time} has been confirmed. We look forward to seeing you! {restaurant_name}
 )
 
 
-@app.post("/status")
+@app.post("api/status")
 async def status(CallSid: str = Form(), CallStatus: str = Form()) -> None:
     """Sends a booking confirmation via SMS."""
     if CallStatus == "completed":
@@ -212,20 +203,20 @@ async def status(CallSid: str = Form(), CallStatus: str = Form()) -> None:
                     time=booking["time"],
                     restaurant_name=calls[CallSid]["restaurant_name"],
                 ),
-                from_=TWILIO_PHONE_NUMBER,
+                from_=constants.TWILIO_PHONE_NUMBER,
                 to=phone_number,
             )
 
 
-@app.get("/save-restaurant-data")
+@app.get("api/save-restaurant-data")
 def save_restaurant_data(place_id: str) -> None:
     if place_id in restaurants:
         return
 
     response = requests.get(
-        PLACE_DETAILS_URL,
+        constants.PLACE_DETAILS_URL,
         params={
-            "key": GCP_API_KEY,
+            "key": constants.GCP_API_KEY,
             "place_id": place_id,
         },
     )
@@ -274,7 +265,7 @@ def save_restaurant_data(place_id: str) -> None:
     ).split_documents(website_data)
 
     # Build vector database for restaurant
-    embedding = OpenAIEmbeddings(openai_api_key=OPENAI_API_KEY)
+    embedding = OpenAIEmbeddings(openai_api_key=constants.OPENAI_API_KEY)
     for idx, documents in enumerate([reviews_splits, generic_data_splits, web_splits]):
         if idx == 0:
             index = Chroma.from_documents(
@@ -300,7 +291,7 @@ class Position(BaseModel):
     lng: float
 
 
-@app.post("/position")
+@app.post("api/position")
 async def receive_position(position: Position):
     lat = position.lat
     lng = position.lng
@@ -311,14 +302,14 @@ async def receive_position(position: Position):
     
     find_restaurant(position)
 
-@app.post("/restaurant")
+@app.post("api/restaurant")
 def find_restaurant(position: Position):
     # Define the parameters
     lat = position.lat
     lng = position.lng
     radius = 100
     type = "restaurant"
-    api_key = os.getenv("GCP_API_KEY")
+    api_key = constants.GCP_API_KEY
 
     # Define the URL
     url = f"https://maps.googleapis.com/maps/api/place/nearbysearch/json"
@@ -326,22 +317,22 @@ def find_restaurant(position: Position):
     full_url = url + params
 
     # Make the API request
-    with urllib.request.urlopen(full_url) as response:
-        data = json.loads(response.read().decode())
-
-        # Check if the request was successful (status code 200)
-        if response.status == 200:
-            results = data.get('results', [])
-            for place in results:
-                print(f"Name: {place['name']}, Location: {place['geometry']['location']}")
-            # Write the results to a JSON file
-            with open('output/restaurant.json', 'w') as f:
-                json.dump(results, f)
-            return results
-        else:
-            raise HTTPException(status_code=400, detail="Failed to find restaurant")
+    response = requests.get(full_url)
+    
+    # Check if the request was successful (status code 200)
+    if response.status_code == 200:
+        data = response.json()
+        results = data.get('results', [])
+        for place in results:
+            print(f"Name: {place['name']}, Location: {place['geometry']['location']}")
+        # Write the results to a JSON file
+        with open('output/restaurant.json', 'w') as f:
+            json.dump(results, f, indent=4)
+        return results
+    else:
+        raise HTTPException(status_code=400, detail="Failed to find restaurant")
         
-@app.post("/user")
+@app.post("api/user")
 async def store_user_pref(request: Request):
     user_data = await request.json()
     print(user_data)
@@ -353,3 +344,4 @@ save_restaurant_data(RESTAURANT)
 
 if __name__ == "__main__":
     uvicorn.run("index:app", host="0.0.0.0", port=8000, reload=True)
+    find_restaurant(Position(lat=51.5074, lng=0.1278))
