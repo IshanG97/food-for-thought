@@ -1,0 +1,5 @@
+Check what the restaurant json output looks like
+  Select the first restaurant that pops up that match the given user criteria
+  Web scrape restaurant website to get menu options
+The chat must be intelligent enough to respond with context -> set the context of the chatbot after selecting the restaurant.
+Build a proper chat window.
